@@ -16,7 +16,6 @@ const render = require("./lib/htmlRenderer");
 
 async function init() {
     console.log("Let's get a team set up!");
-
     let teamHTML = "";
     let teamSize;
 
@@ -44,12 +43,12 @@ async function init() {
         await inquirer.prompt([
             {
                 type: "input",
-                message: "What is employee " + [i] +"'s name?",
+                message: "What is employee " + [i] + "'s name?",
                 name: "name"
             },
             {
                 type: "input",
-                message: "What is employee " + [i] +"'s id?",
+                message: "What is employee " + [i] + "'s id?",
                 name: "id"
             },
             {
@@ -59,7 +58,7 @@ async function init() {
             },
             {
                 type: "input",
-                message: "What is employee " + [i] +"'s title?",
+                message: "What is employee " + [i] + "'s title?",
                 name: "title",
                 choices: ["Engineer", "Intern", "Manager"]
             }
@@ -70,7 +69,7 @@ async function init() {
             email = data.email;
         });
 
-        // extra questions based on role and pulls correct templates with correct data
+        // extra questions based on role and pulls correct template with correct data
 
         switch (title) {
             case "Manager":
@@ -82,9 +81,7 @@ async function init() {
                     }
                 ]).then((data) => {
                     const manager = new Manager(name, id, email, data.officeNumber);
-
                     teamMember = fs.readFileSync("templates/manager.html");
-
                     teamHTML = teamHTML + "\n" + eval("`" + teamMember + "`");
                 });
                 break;
@@ -125,7 +122,7 @@ async function init() {
 
     // creates team.html
 
-    fs.writeFile("output/team.html", teamHTML, function(err) {
+    fs.writeFile("output/team.html", teamHTML, function (err) {
         if (err) {
             return console.log(err);
         }
