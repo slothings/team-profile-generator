@@ -38,22 +38,22 @@ async function init() {
         await inquirer.prompt([
             {
                 type: "input",
-                message: "What is employee [${i}]'s name?",
+                message: "What is employee " + [i] +"'s name?",
                 name: "name"
             },
             {
                 type: "input",
-                message: "What is employee [${i}]'s id?",
+                message: "What is employee " + [i] +"'s id?",
                 name: "id"
             },
             {
                 type: "input",
-                message: "What is employee [${i}]'s email?",
+                message: "What is employee " + [i] + "'s email?",
                 name: "email"
             },
             {
                 type: "input",
-                message: "What is employee [${i}]'s title?",
+                message: "What is employee " + [i] +"'s title?",
                 name: "title",
                 choices: ["Engineer", "Intern", "Manager"]
             }
