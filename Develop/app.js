@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-async function start() {
+async function init() {
     console.log("Let's get a team set up!");
 
     let teamHTML = "";
@@ -23,7 +23,7 @@ async function start() {
             name: "teamMemberSize"
         }
     ).then((data) => {
-        teamSize = data.teamMemberSize++;
+        teamSize = data.teamMemberSize + 1;
     });
     if (teamSize === 0) {
         console.log("Your team has no members :(");
@@ -38,25 +38,25 @@ async function start() {
         await inquirer.prompt([
             {
                 type: "input",
-                message: "What is employee (${i})'s name?",
+                message: "What is employee [${i}]'s name?",
                 name: "name"
             },
             {
                 type: "input",
-                message: "What is employee (${i})'s id?",
+                message: "What is employee [${i}]'s id?",
                 name: "id"
             },
             {
                 type: "input",
-                message: "What is employee (${i})'s email?",
+                message: "What is employee [${i}]'s email?",
                 name: "email"
             },
             {
                 type: "input",
-                message: "What is employee (${i})'s title?",
+                message: "What is employee [${i}]'s title?",
                 name: "title",
                 choices: ["Engineer", "Intern", "Manager"]
-            },
+            }
         ]).then((data) => {
             name = data.name;
             id = data.id;
@@ -115,15 +115,15 @@ async function start() {
 
     teamHTML = eval("`" + mainHTML + "`");
 
-    fs.writeFileSync("output/team.html", teamHTML, function (error) {
-        if (error) {
-            return console.log(error);
+    fs.writeFile("output/team.html", teamHTML, function(err) {
+        if (err) {
+            return console.log(err);
         }
         console.log("Works!");
     });
 }
 
-start();
+init();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
