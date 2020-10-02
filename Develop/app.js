@@ -122,7 +122,7 @@ async function init() {
 
     // creates team.html
 
-    fs.writeFile("output/team.html", teamHTML, function (err) {
+    fs.writeFile(outputPath, teamHTML, function (err) {
         if (err) {
             return console.log(err);
         }
